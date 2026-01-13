@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vinu | Portfolio</title>
+    <meta name="description" content="Vinu. Duke MS ECE. Machine Learning. Bio-inspired AI." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home">Vinu</a>
+
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-btn" aria-label="Open menu" id="menuBtn">Menu</button>
+    </header>
+
+    <main id="home" class="container">
+      <section class="hero">
+        <div class="hero-left">
+          <p class="pill">Duke MS ECE | Machine Learning</p>
+
+          <h1>
+            Hi, I’m <span class="accent">Vinu</span>.
+            <br />
+            I build ML systems.
+            <br />
+            I’m curious about biology too.
+          </h1>
+
+          <p class="sub">
+            I explore ML for real-world impact.
+            I’m interested in protein folding and DNA sequence analysis.
+            I also studied nutrition outside my academics.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn primary" href="#projects">View projects</a>
+            <a class="btn" href="assets/Vinu_Resume.pdf" target="_blank" rel="noopener noreferrer">
+              Download resume
+            </a>
+          </div>
+
+          <div class="quick-links">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:your.email@duke.edu">Email</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="card portrait">
+            <div class="avatar" aria-hidden="true"></div>
+            <div class="portrait-text">
+              <p class="kicker">Current focus</p>
+              <p class="strong">ML engineering, AI systems, bio-inspired computing</p>
+              <p class="muted">Open to internships and research collaborations.</p>
+            </div>
+          </div>
+
+          <div class="card stats">
+            <div class="stat">
+              <p class="kicker">Primary</p>
+              <p class="strong">ML + Systems</p>
+            </div>
+            <div class="stat">
+              <p class="kicker">Interests</p>
+              <p class="strong">Protein folds, DNA</p>
+            </div>
+            <div class="stat">
+              <p class="kicker">Outside class</p>
+              <p class="strong">Nutrition</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <h2>About</h2>
+        <div class="grid two">
+          <div class="card">
+            <p>
+              I am a graduate student in Electrical and Computer Engineering at Duke.
+              My work centers on machine learning and AI systems.
+              I like building clean pipelines, reliable experiments, and deployable models.
+            </p>
+            <p>
+              I’m also drawn to biological computation.
+              I enjoy learning about how structure and sequence drive function.
+              That is why protein folding and DNA sequence analysis fascinate me.
+            </p>
+          </div>
+
+          <div class="card">
+            <p class="kicker">What I value</p>
+            <ul class="bullets">
+              <li>Strong fundamentals</li>
+              <li>Fast iteration with clear testing</li>
+              <li>Readable documentation</li>
+              <li>Curiosity across disciplines</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p class="muted">Replace these with your real projects and links.</p>
+        </div>
+
+        <div class="grid three" id="projectGrid"></div>
+      </section>
+
+      <section id="skills" class="section">
+        <h2>Skills</h2>
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">NumPy</span>
+          <span class="chip">Pandas</span>
+          <span class="chip">Scikit-learn</span>
+          <span class="chip">Git</span>
+          <span class="chip">Linux</span>
+          <span class="chip">Docker</span>
+          <span class="chip">APIs</span>
+          <span class="chip">Testing</span>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact</h2>
+        <div class="card">
+          <p>
+            If you want to collaborate, message me.
+            I respond fast.
+          </p>
+          <div class="contact-row">
+            <a class="btn primary" href="mailto:your.email@duke.edu">Email me</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </div>
+          <p class="muted small">
+            Tip: put your resume PDF at <code>assets/Vinu_Resume.pdf</code>.
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="muted small">© <span id="year"></span> Vinu. Built with GitHub Pages.</p>
+      </footer>
+    </main>
+
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
