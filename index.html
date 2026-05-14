@@ -304,6 +304,46 @@ section {
 }
 .section-title em { font-style: italic; color: var(--accent); }
 
+.about-photo-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.about-photo {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  filter: grayscale(15%);
+  transition: filter 0.4s;
+}
+.about-photo:hover { filter: grayscale(0%); }
+.about-photo-wrap::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px;
+  right: -12px; bottom: -12px;
+  border: 1px solid var(--accent);
+  z-index: -1;
+  opacity: 0.4;
+}
+.about-photo-tag {
+  position: absolute;
+  bottom: 0; left: 0;
+  background: rgba(7,8,10,0.85);
+  border-top: 1px solid var(--border2);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 0.75rem;
+  max-width: 380px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* ABOUT */
 #about {
   display: grid;
@@ -540,6 +580,29 @@ section {
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.04em;
 }
+.project-course {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+}
+.proj-filter {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  cursor: none;
+  transition: all 0.2s;
+}
+.proj-filter:hover { color: var(--text); border-color: var(--accent); }
+.proj-filter.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 
 /* SKILLS */
 #skills { background: var(--bg2); }
@@ -780,7 +843,7 @@ footer {
 
   <p class="hero-tagline">
     <strong>ML Engineer & Full-Stack Developer</strong> building scalable, 
-    data-driven systems. Duke MS ECE student with 4+ years shipping production software.
+    data-driven systems. Duke MS ECE student with 4.5+ years shipping production software.
     <span id="typed-text"></span><span class="typed-cursor"></span>
   </p>
 
@@ -792,12 +855,12 @@ footer {
   <div class="hero-social">
     <a href="https://github.com/vinodhini-rajasekhar" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/vinodhini-rajasekhar" target="_blank">LinkedIn</a>
-    <a href="mailto:vr156@duke.edu">Email</a>
+    <a href="https://mail.google.com/mail/?view=cm&to=vr156@duke.edu" target="_blank">Email</a>
   </div>
 
   <div class="hero-stats">
     <div class="stat-item">
-      <div class="num">4<span>+</span></div>
+      <div class="num">4.5<span>+</span></div>
       <div class="label">Years Industry</div>
     </div>
     <div class="stat-item">
@@ -848,7 +911,7 @@ footer {
     <div class="section-label">About me</div>
     <h2 class="section-title">Building ML systems<br>that <em>matter</em></h2>
     <p class="about-body">
-      Mid-level software engineer turned ML researcher. I spent <strong>4+ years at Radial Inc and Cognizant</strong> shipping production systems at scale — from healthcare platforms handling 10,000+ daily transactions to analytics dashboards that cut 2-hour reports to 5 minutes.
+      Mid-level software engineer turned ML researcher. I spent <strong>4.5+ years at Radial Inc and Cognizant</strong> shipping production systems at scale — from healthcare platforms handling 10,000+ daily transactions to analytics dashboards that cut 2-hour reports to 5 minutes.
     </p>
     <p class="about-body">
       Now at Duke pursuing MS in Machine Learning, I'm applying that engineering rigor to deep learning, bio-inspired AI, and generative systems. I care about <strong>clean pipelines, reliable experiments, and models that actually deploy</strong>.
@@ -858,7 +921,7 @@ footer {
     </p>
   </div>
   <div class="about-right reveal reveal-delay-2">
-    <div class="section-label">Education</div>
+    <div class="section-label" style="margin-top:2.5rem;">Education</div>
     <div class="edu-block">
       <div class="edu-school">Duke University</div>
       <div class="edu-degree">MS, Machine Learning (ECE)</div>
@@ -949,27 +1012,96 @@ footer {
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label reveal">Academic projects</div>
+  <div class="section-label reveal">Academic &amp; Research projects</div>
   <h2 class="section-title reveal">What I've <em>built</em></h2>
-  <div class="projects-grid">
 
-    <div class="project-card reveal">
-      <div class="project-num">01 — 2025</div>
+  <!-- Filter tabs -->
+  <div class="proj-filters reveal" style="display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap;">
+    <button class="proj-filter active" data-filter="all">All (7)</button>
+    <button class="proj-filter" data-filter="ml">ML / AI</button>
+    <button class="proj-filter" data-filter="systems">Systems</button>
+    <button class="proj-filter" data-filter="genai">Generative AI</button>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+
+    <div class="project-card reveal" data-cat="ml genai">
+      <div class="project-num">01 — 2026</div>
       <div class="featured-badge">Hackathon Winner</div>
       <div class="project-name">NeuroTwin</div>
-      <div class="project-desc">Emotionally intelligent digital twin platform using 768-dimensional embeddings via Snowflake Cortex. Features EMA-based twin evolution, a 5-factor compatibility engine, and multi-agent LangChain pipeline for twin retrieval, scoring, and AI-generated conversation previews.</div>
+      <div class="project-desc">Emotionally intelligent digital twin platform using 768-dimensional embeddings via Snowflake Cortex. EMA-based twin evolution, 5-factor compatibility engine, and multi-agent LangChain pipeline for twin retrieval, scoring, and AI-generated conversation previews.</div>
       <div class="project-highlight">Bronze · IvyPlus Hackathon MedTech Track 2026</div>
       <div style="margin-top:1rem;">
         <span class="project-tag">LangChain</span>
         <span class="project-tag">Snowflake Cortex</span>
         <span class="project-tag">Embeddings</span>
         <span class="project-tag">Multi-Agent</span>
-        <span class="project-tag">Generative AI</span>
       </div>
     </div>
 
-    <div class="project-card reveal reveal-delay-1">
-      <div class="project-num">02 — 2025</div>
+    <div class="project-card reveal reveal-delay-1" data-cat="ml">
+      <div class="project-num">02 — 2026</div>
+      <div class="project-course">ECE 590.09 · LLMs</div>
+      <div class="project-name">Parkinson's Severity Prediction with Transformers &amp; RAG</div>
+      <div class="project-desc">Multi-model framework for Parkinson's progression over irregular longitudinal PPMI records. Designed and built the full RAG pipeline — local clinical knowledge retriever, similar-case retrieval, Streamlit patient interface, and plain-language summary generation grounded in clinical evidence.</div>
+      <div class="project-highlight">MTCT: MAE 2.52 · R² 0.823 · RAG pipeline owner</div>
+      <div style="margin-top:1rem;">
+        <span class="project-tag">Transformers</span>
+        <span class="project-tag">RAG</span>
+        <span class="project-tag">ClinicalBERT</span>
+        <span class="project-tag">LSTM</span>
+        <span class="project-tag">Streamlit</span>
+        <span class="project-tag">PPMI</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-cat="systems ml">
+      <div class="project-num">03 — 2026</div>
+      <div class="project-course">ECE 685D · Deep Learning</div>
+      <div class="project-name">mmWave Radar → Occupancy Grid (Deep Learning)</div>
+      <div class="project-desc">Systematic evaluation of 5 deep learning architectures (ConvLSTM, ViT, Implicit Neural, GAN, Diffusion) for real-time radar-to-occupancy grid reconstruction. Implemented RadarHD-style U-Net baseline with Dice + BCE loss and symmetric decoder for the square input geometry.</div>
+      <div class="project-highlight">85% GAN param reduction · 44.58M → 6.5M · ~61 FPS on edge CPU</div>
+      <div style="margin-top:1rem;">
+        <span class="project-tag">Pix2Pix GAN</span>
+        <span class="project-tag">ConvLSTM</span>
+        <span class="project-tag">SegFormer</span>
+        <span class="project-tag">PyTorch</span>
+        <span class="project-tag">Edge Deployment</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-cat="genai systems">
+      <div class="project-num">04 — 2026</div>
+      <div class="project-course">ECE 590 · Generative AI Safety</div>
+      <div class="project-name">SecureCarAgent — FSM-Based LLM Prompt Injection Defense</div>
+      <div class="project-desc">FSM-driven multi-agent car-sales dialogue system with a cascaded 3-layer safety pipeline: deterministic keyword filter → fine-tuned DeBERTa-v3 → prompted LLM classifier. Hybrid routing achieves 90% accuracy — matching full LLM classification at 32× lower latency (1.00s vs 32.29s/query).</div>
+      <div class="project-highlight">90% accuracy · 32× latency reduction via hybrid cascade</div>
+      <div style="margin-top:1rem;">
+        <span class="project-tag">LLM Safety</span>
+        <span class="project-tag">DeBERTa-v3</span>
+        <span class="project-tag">FSM</span>
+        <span class="project-tag">RAG</span>
+        <span class="project-tag">Prompt Injection</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1" data-cat="systems">
+      <div class="project-num">05 — 2026</div>
+      <div class="project-course">ECE 590DE · Data Engineering</div>
+      <div class="project-name">Market Sentiment &amp; Insider Trade Data Pipeline</div>
+      <div class="project-desc">Production-grade Airflow DAG pipeline ingesting market sentiment and insider trade data from Alpha Vantage into a tiered PostgreSQL architecture (hot/warm/cold partitions). Automated sentiment scoring, duplicate detection via S3 staging, and per-user watchlist email alerts over SMTP.</div>
+      <div class="project-highlight">Airflow · S3 · PostgreSQL · RAID-tiered storage architecture</div>
+      <div style="margin-top:1rem;">
+        <span class="project-tag">Apache Airflow</span>
+        <span class="project-tag">PostgreSQL</span>
+        <span class="project-tag">AWS S3</span>
+        <span class="project-tag">Data Pipelines</span>
+        <span class="project-tag">ETL</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-cat="ml">
+      <div class="project-num">06 — 2025</div>
       <div class="project-name">Astrophotography Defect Classifier</div>
       <div class="project-desc">End-to-end ML pipeline for automated defect classification using CNNs with ROI extraction via DAOStarFinder. Trained and benchmarked ResNet, MobileNet, DenseNet, and EfficientNet on balanced datasets.</div>
       <div class="project-highlight">&gt;95% test accuracy</div>
@@ -982,8 +1114,8 @@ footer {
       </div>
     </div>
 
-    <div class="project-card reveal reveal-delay-2">
-      <div class="project-num">03 — 2025</div>
+    <div class="project-card reveal" data-cat="ml systems">
+      <div class="project-num">07 — 2025</div>
       <div class="project-name">Recipe Discovery Platform</div>
       <div class="project-desc">Full-stack application with API integration for recipe search and meal planning using a multithreaded backend. Improved model accuracy by 12% through feature scaling, L2 regularization, and systematic hyperparameter tuning.</div>
       <div class="project-highlight">+12% model accuracy via L2 regularization</div>
@@ -1073,7 +1205,7 @@ footer {
       Open to ML engineering roles, research collaborations, and internships. I respond fast.
     </p>
     <div class="contact-links">
-      <a href="mailto:vr156@duke.edu" class="contact-link">
+      <a href="https://mail.google.com/mail/?view=cm&to=vr156@duke.edu" target="_blank" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
         vr156@duke.edu
       </a>
@@ -1134,6 +1266,23 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Project filters
+document.querySelectorAll('.proj-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.proj-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(card => {
+      const cats = card.dataset.cat || '';
+      const show = f === 'all' || cats.includes(f);
+      card.style.opacity = show ? '1' : '0.2';
+      card.style.pointerEvents = show ? 'auto' : 'none';
+      card.style.transform = show ? '' : 'scale(0.97)';
+      card.style.transition = 'opacity 0.3s, transform 0.3s';
+    });
+  });
+});
 
 // Active nav
 const sections = document.querySelectorAll('section[id]');
